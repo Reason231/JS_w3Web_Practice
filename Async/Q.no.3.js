@@ -1,22 +1,24 @@
-function make_Get_Request(url) {
-    return new Promise((resolve, reject) => {
-      fetch(url)
-        .then(response => {
-          if (!response.ok) {
-            throw new Error(`HTTP error! Status: ${response.status}`);
-          }
-          return response.json();
-        })
-        .then(data => resolve(data))
-        .catch(error => reject(error));
+function HTTP_Request(url) {
+    return new Promise(async (resolve, reject) => {
+        try {
+            const response = await fetch(url); // Await the fetch call
+
+            if (response.ok) {
+                const data = await response.json(); // allows you to parse and return the actual data fetched from the API.
+                resolve(data);  
+            } else {
+                reject("The data isn't fetched");  
+            }
+        } catch (e) {
+            reject(`Error: ${e.message}`);  
+        }
     });
-  }
-  
-  make_Get_Request('https://example.com/data')
-    .then(data => {
-      console.log('Response data: ' + data);
+}
+
+HTTP_Request("https://localhost:5500/admin")
+    .then(res => {
+        console.log("Data:", res);  // Log the fetched data
     })
-    .catch(error => {
-      console.log('Error: ' + error.message);
+    .catch(rej => {
+        console.log(rej);  // Log any error that occurred
     });
-  
