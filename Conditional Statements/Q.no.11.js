@@ -11,7 +11,7 @@ function commonFactor(a,b){
             common.push(i)
         }
     }
-    console.log(common)  // Common Divisor 
+    console.log(common)  // Common Factor 
     console.log(common.slice(-1))   // Highest GCD
 }
 commonFactor(18,24)
