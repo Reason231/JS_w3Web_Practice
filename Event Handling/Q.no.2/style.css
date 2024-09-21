@@ -1,0 +1,8 @@
+ul{
+    list-style: none;
+    visibility: hidden;
+}
+
+ul.active{
+    visibility: visible;
+}
